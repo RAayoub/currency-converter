@@ -14,7 +14,8 @@
     <name>currency convertor</name>
     <description>currency convertor</description>
     <properties>
-        <java.version>11</java.version>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
         <spring-cloud.version>2021.0.0</spring-cloud.version>
     </properties>
     <dependencies>
@@ -38,7 +39,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>

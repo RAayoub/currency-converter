@@ -23,16 +23,17 @@ public class CurrencyConverterErrorHandler implements ErrorDecoder {
     @Override
     public Exception decode(String s, Response response) {
         if (response.body() == null) {
-            return new TechnicalException("Response Body is null");
+            return new TechnicalException(ExceptionPayloadFactory.RESPONSE_BODY_MISSING.get());
         }
 
         InputStream inputStream = response.body().asInputStream();
         ObjectMapper mapper = new ObjectMapper();
         ConversionResponse conversionResponse = mapper.readValue(inputStream, ConversionResponse.class);
-        if (conversionResponse.getError() != null) {
-            log.error("Error calling the api {}" , Utils.toJson(conversionResponse.getError()));
-            return new BusinessException(ExceptionPayloadFactory.UNKNOWN_ERROR.get());
+        ConversionResponse.Error errorResponse = conversionResponse.getError();
+        if (errorResponse != null) {
+            log.error("Error calling the api {}" , Utils.toJson(errorResponse));
+            return new BusinessException(errorResponse.getCode(), errorResponse.getMessage());
         }
-        return new TechnicalException("Unhandled Exception");
+        return new TechnicalException(ExceptionPayloadFactory.UNHANDLED_ERROR.get());
     }
 }

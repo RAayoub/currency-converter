@@ -9,4 +9,4 @@ spring:
     
 core:
   url: "http://api.exchangeratesapi.io/v1/"
-  access-key: "5fe71138a78591bb883e570b65834aec6"
+  access-key: "5fe71138a78591bb883e570b65834ec6"

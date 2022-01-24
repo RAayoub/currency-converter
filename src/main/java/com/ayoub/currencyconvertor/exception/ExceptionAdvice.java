@@ -26,9 +26,8 @@ public class ExceptionAdvice {
 
     @ExceptionHandler({Throwable.class})
     public ResponseEntity<ExceptionPayload> handle(final Throwable throwable) {
-        final String guid = UUID.randomUUID().toString();
-        final ExceptionPayload exceptionPayload = ExceptionPayloadFactory.UNKNOWN_ERROR.get().toBuilder().reference(guid).build();
-        log.error(String.format("error occurred with reference %s ", guid), throwable);
+        final ExceptionPayload exceptionPayload = ExceptionPayloadFactory.UNKNOWN_ERROR.get().toBuilder().build();
+        log.error(String.format("error occurred : "), throwable);
         return ResponseEntity.status(exceptionPayload.getStatusCode()).body(exceptionPayload);
     }
 }

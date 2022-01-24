@@ -18,12 +18,5 @@ public class ExceptionPayload {
     private Integer statusCode;
     private LocalDateTime timestamp;
     private String message;
-    private String reference;
 
-    @Override
-    public String toString() {
-        if (reference == null)
-            return String.join(";", String.valueOf(code), message, timestamp.toString());
-        return String.join(";", String.valueOf(code), message, timestamp.toString(), reference);
-    }
 }
