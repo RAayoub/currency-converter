@@ -1,0 +1,12 @@
+server:
+  servlet:
+    context-path: /api
+  port: 8089
+  
+spring:
+  profiles:
+    active: local
+    
+core:
+  url: "http://api.exchangeratesapi.io/v1/"
+  access-key: "5fe71138a78591bb883e570b65834aec6"
